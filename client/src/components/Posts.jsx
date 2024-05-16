@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import PostItem from "./PostItem";
 
 import Thumbnail1 from "../images/blog1.jpg";
 import Thumbnail2 from "../images/blog2.jpg";
@@ -41,7 +42,17 @@ const DUMMY_POSTS = [
 ];
 
 const Posts = () => {
-  return <div>Posts</div>;
+  const [posts, setPosts] = useState(DUMMY_POSTS);
+
+  return (
+    <section className="posts">
+      <div className="container post_container">
+        {posts.map((post) => (
+          <PostItem key={post.id} post={post} />
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Posts;

@@ -134,8 +134,7 @@ section {
   background: var(--color-gray-900);
 }
 
-
-.center{
+.center {
   text-align: center;
   padding-top: 5rem;
   margin-inline: center;
@@ -143,7 +142,7 @@ section {
   width: 100%;
 }
 
-.error-page h2{
+.error-page h2 {
   margin-top: 3rem;
 }
 
@@ -166,7 +165,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 100;
 }
 
 .nav_logo {
@@ -213,8 +212,7 @@ footer {
   color: var(--color-gray-900);
 }
 
-
-.footer_copyright{
+.footer_copyright {
   text-align: center;
   border-top: 2px solid var(--color-gray-700);
   padding: 1rem;
@@ -222,4 +220,90 @@ footer {
   font-weight: 300;
 }
 
+/* =========================== Home ========================== */
+/* =========================== Posts ========================== */
 
+.post_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+}
+
+.post {
+  background-color: var(--color-white);
+  padding: 1rem;
+  border-radius: var(--radius-4);
+  padding-bottom: 2rem;
+  transition: var(--transition);
+  cursor: default;
+}
+
+.post:hover {
+  box-shadow: 1rem 1rem 2rem var(--color-gray-500);
+}
+
+.post_thumbnail {
+  border-radius: var(--radius-3);
+  overflow: hidden;
+  height: 15rem;
+}
+
+.post_content {
+  margin-top: 1rem;
+}
+
+.post_content h3 {
+  margin: 1rem 0 0.6rem;
+}
+
+.post_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2rem;
+}
+
+.post_author {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.post_author-avatar {
+  width: 2.5rem;
+  border-radius: var(--radius-2);
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+
+/* =========================== Post Detail ========================== */
+
+.post-detail {
+  width: var(--form-width);
+  background: var(--color-white);
+  margin-inline: auto;
+  padding: 2rem 0;
+}
+
+.post-detail_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.post-detail_buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.post-detail_thumbnail {
+  margin: 1rem 0;
+  overflow: hidden;
+  max-height: 30rem;
+  height: fit-content;
+}
+
+.post_detail p{
+  margin-bottom: 0.7rem;
+}
