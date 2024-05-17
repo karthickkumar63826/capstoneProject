@@ -11,9 +11,8 @@ import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
 import Authors from "./pages/Authors";
 import EditPost from "./pages/EditPost";
-import DeletePost from "./pages/DeletePost"
+import DeletePost from "./pages/DeletePost";
 import CreatePost from "./pages/CreatePost";
-import EditPost from "./pages/EditPost";
 import Dashboard from "./pages/Dashboard";
 import Logout from "./pages/Logout";
 import AuthorPosts from "./pages/AuthorPosts";
