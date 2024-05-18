@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const connectDatabase = require("./Utils/database");
 require("dotenv").config();
+const upload = require("express-fileupload");
+
 const userRoutes = require("./Routes/userRoutes");
 const postRoutes = require("./Routes/postRoutes");
 const { notFound, errorMiddleware } = require("./Middleware/errorMiddleware");
@@ -12,6 +14,8 @@ const port = process.env.PORT || 8001;
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(upload());
+app.use('/uploads', express.static(__dirname + "/uploads"))
 
 const start = async () => {
   try {
