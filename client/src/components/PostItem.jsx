@@ -18,12 +18,12 @@ const PostItem = ({ post }) => {
         />
       </div>
       <div className="post_content">
-        <Link to={`/posts/${post.id}`}>
+        <Link to={`/posts/${post._id}`}>
           <h3>{shortTitle}</h3>
         </Link>
         <p>{shortdescription}</p>
         <div className="post_footer">
-          <PostAuthor authorId={authorId} createdAt={createdAt} />
+          <PostAuthor authorId={post.creator} createdAt={post.createdAt} />
           <Link
             to={`/posts/categories/${post.category}`}
             className="btn category"
