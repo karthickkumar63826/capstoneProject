@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { UserContext } from "../context/userContext";
 
 const Header = () => {
   const [isNavShowing, setIsNavShowing] = useState(
     window.innerWidth > 800 ? true : false
   );
+
+  const { currentUser } = useContext(UserContext);
 
   const closeNavHandler = () => {
     if (window.innerWidth < 800) {
@@ -23,7 +26,7 @@ const Header = () => {
           <Link to="/" className="nav_logo" onClick={closeNavHandler}>
             <img src={Logo} alt="" />
           </Link>
-          {isNavShowing && (
+          {currentUser?.id && isNavShowing && (
             <ul className="nav_menu">
               <li>
                 <Link to="/profile/sdfsdf" onClick={closeNavHandler}>
@@ -43,6 +46,20 @@ const Header = () => {
               <li>
                 <Link to="/logout" onClick={closeNavHandler}>
                   Logout
+                </Link>
+              </li>
+            </ul>
+          )}
+          {!currentUser?.id && isNavShowing && (
+            <ul className="nav_menu">
+              <li>
+                <Link to="/authors" onClick={closeNavHandler}>
+                  Authors
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" onClick={closeNavHandler}>
+                  Login
                 </Link>
               </li>
             </ul>
