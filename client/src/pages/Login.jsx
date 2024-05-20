@@ -33,6 +33,7 @@ const Login = () => {
       setCurrentUser(user);
       navigate("/");
     } catch (err) {
+      console.log(err.response.data.message);
       setError(err.response.data.message);
     }
   };

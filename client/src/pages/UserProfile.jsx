@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import Avatar from "../images/avatar1.jpg";
 import { FaEdit } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [avatar, setAvatar] = useState(Avatar);
@@ -12,10 +15,22 @@ const UserProfile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
+  const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const id = currentUser?.id;
+  const token = currentUser?.token;
+
+  useEffect(() => {
+    if (!token) {
+      return navigate("/login");
+    }
+  }, []);
+
   return (
     <section className="profile">
       <div className="container profile_container">
-        <Link to={`/myposts/sdfsdf`} className="btn">
+        <Link to={`/myposts/${id}`} className="btn">
           My posts
         </Link>
         <div className="profile_details">

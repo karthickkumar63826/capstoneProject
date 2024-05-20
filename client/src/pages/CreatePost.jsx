@@ -1,25 +1,50 @@
 import React, { useContext, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import UserContext from "../context/userContext";
-import {useNavigate} from "react-router-dom";
+import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState("");
+  const [error, setError] = useState("");
 
   const { currentUser } = useContext(UserContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const token  = currentUser?.token;
+  const token = currentUser?.token;
 
-  useEffect(() =>{
-    if(!token){
-      navigate("/login")
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
     }
-  },[])
+  }, []);
+
+  const createPost = async (e) => {
+    e.preventDefault();
+
+    const postData = new FormData();
+    postData.set("title", title);
+    postData.set("description", description);
+    postData.set("category", category);
+    postData.set("thumbnail", thumbnail);
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/posts`,
+        postData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      return navigate("/");
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
 
   const module = {
     toolbar: [
@@ -66,8 +91,8 @@ const CreatePost = () => {
       <section className="create-post">
         <div className="container">
           <h2>Create Post</h2>
-          <p className="form_error-message">This is an error message</p>
-          <form className="form create-post_form">
+          {error && <p className="form_error-message">{error}</p>}
+          <form className="form create-post_form" onSubmit={createPost}>
             <input
               type="text"
               placeholder="title"
