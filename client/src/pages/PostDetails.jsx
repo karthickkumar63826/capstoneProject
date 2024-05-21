@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import PostAuthor from "../components/PostAuthor";
 import { Link, useParams } from "react-router-dom";
-import Thumbnail from "../images/blog22.jpg";
 import { UserContext } from "../context/userContext";
 import Loader from "../components/Loader";
 import DeletePost from "./DeletePost";

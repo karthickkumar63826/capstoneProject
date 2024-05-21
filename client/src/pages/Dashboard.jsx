@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import DeletePost from "./DeletePost";
 import axios from "axios";
 import Loader from "../components/Loader";
 
@@ -72,12 +73,8 @@ const Dashboard = () => {
                   >
                     Edit
                   </Link>
-                  <Link
-                    to={`/posts/${post._id}/delete`}
-                    className="btn sm danger"
-                  >
-                    Delete
-                  </Link>
+
+                  <DeletePost id={post._id} />
                 </div>
               </article>
             );

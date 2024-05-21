@@ -52,6 +52,7 @@ const createPost = async (req, res, next) => {
 
         res.status(200).json(newPost);
       } catch (err) {
+        console.log(err);
         return next(new HttpError("problem in thumbnail", 422));
       }
     });
@@ -218,13 +219,15 @@ const deletePost = async (req, res, next) => {
           } else {
             await Posts.findByIdAndDelete(postId);
             const currentUser = await User.findById(req.user.id);
-            const userPostCount = currentUser?.posts - 1;
+            const userPostCount =
+              currentUser?.posts < 0 ? 1 : currentUser?.posts - 1;
+
             await User.findByIdAndUpdate(req.user.id, { posts: userPostCount });
           }
         }
       );
 
-      res.status(202).json(`post ${postId} deleted successfully.`);
+      res.status(200).json(`post ${postId} deleted successfully.`);
     } else {
       return next(
         new HttpError("to get post delete, need authentication ", 403)
