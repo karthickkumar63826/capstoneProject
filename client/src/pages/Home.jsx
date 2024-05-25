@@ -1,8 +1,14 @@
 import React from "react";
 import Posts from "../components/Posts";
+import Hero from "../components/Hero";
 
 const Home = () => {
-  return <Posts />;
+  return (
+    <>
+      <Hero />
+      <Posts />
+    </>
+  );
 };
 
 export default Home;
